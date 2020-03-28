@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "block/observer_side",
+    "front": "kevlar:block/block_breaker_front",
+    "side": "block/observer_side"
+  }
+}
