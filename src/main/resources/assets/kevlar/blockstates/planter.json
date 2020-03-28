@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "kevlar:block/planter" },
+    "facing=south": { "model": "kevlar:block/planter", "y": 180 },
+    "facing=west":  { "model": "kevlar:block/planter", "y": 270 },
+    "facing=east":  { "model": "kevlar:block/planter", "y": 90 }
+  }
+}
