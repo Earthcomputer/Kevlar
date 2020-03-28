@@ -7,6 +7,7 @@ import net.fabricmc.api.ModInitializer;
 public class Kevlar implements ModInitializer {
 
     public static final String MOD_ID = "kevlar";
+
     @Override
     public void onInitialize() {
         KevlarBlocks.register();

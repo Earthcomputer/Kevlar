@@ -10,7 +10,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-
 public class KevlarBlocks {
 
     public static final PlanterBlock PLANTER = registerBlock(
@@ -18,25 +17,27 @@ public class KevlarBlocks {
             new PlanterBlock(FabricBlockSettings.copy(Blocks.DISPENSER).build()),
             ItemGroup.REDSTONE
     );
-
+    public static final BlockBreakerBlock BLOCK_BREAKER = registerBlock(
+            "block_breaker",
+            new BlockBreakerBlock(FabricBlockSettings.copy(Blocks.DISPENSER).build()),
+            ItemGroup.REDSTONE
+    );
 
     private static <T extends Block> T registerBlock(String name, T block, ItemGroup itemGroup) {
-
         Registry.register(Registry.BLOCK, new Identifier(Kevlar.MOD_ID, name), block);
 
-        if(itemGroup != null) {
+        if (itemGroup != null) {
             Registry.register(
                     Registry.ITEM,
                     new Identifier(Kevlar.MOD_ID, name),
                     new BlockItem(block, new Item.Settings().group(itemGroup))
             );
         }
-
-
         return block;
     }
 
     public static void register() {
-
+        // load the class
     }
+
 }
