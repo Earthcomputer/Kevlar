@@ -1,14 +1,14 @@
 package com.notvanilla.kevlar.block;
 
 import com.notvanilla.kevlar.block.entity.BlockBreakerBlockEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -26,7 +26,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -92,14 +91,31 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        BlockPos posInFront = pos.offset(state.get(FACING));
-        BlockState stateInFront = world.getBlockState(posInFront);
-        if (stateInFront.isAir())
-            return;
-
         BlockEntity be = world.getBlockEntity(pos);
         if (be instanceof BlockBreakerBlockEntity) {
             BlockBreakerBlockEntity blockBreaker = (BlockBreakerBlockEntity) be;
+
+            if (blockBreaker.isMining())
+                return;
+
+            BlockPos posInFront = pos.offset(state.get(FACING));
+            BlockState stateInFront = world.getBlockState(posInFront);
+
+            if (stateInFront.getBlock() == Blocks.FIRE) {
+                boolean hasItem = false;
+                for (int i = 0; i < blockBreaker.getInvSize(); i++) {
+                    if (!blockBreaker.getInvStack(i).isEmpty()) {
+                        hasItem = true;
+                        break;
+                    }
+                }
+                if (!hasItem)
+                    return;
+                world.extinguishFire(null, pos, state.get(FACING));
+            }
+
+            if (stateInFront.isAir())
+                return;
 
             List<Integer> validSlots = new ArrayList<>(blockBreaker.getInvSize());
             for (int i = 0; i < blockBreaker.getInvSize(); i++) {
@@ -121,16 +137,43 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
 
             int slot = validSlots.get(random.nextInt(validSlots.size()));
             ItemStack stack = blockBreaker.getInvStack(slot);
-
-            if (stack.damage(1, random, null)) {
-                blockBreaker.setInvStack(slot, ItemStack.EMPTY);
+            float initialProgress = calcBlockBreakingDelta(world, posInFront, stack, stateInFront);
+            if (initialProgress >= 1) {
+                // insta-mine
+                blockBreaker.startMining(slot, 0);
+                blockBreaker.finishMining();
+            } else {
+                blockBreaker.startMining(slot, initialProgress);
             }
-
-            world.breakBlock(posInFront, true);
         }
     }
 
-    @Nullable
+    public static float calcBlockBreakingDelta(BlockView world, BlockPos pos, ItemStack stack, BlockState state) {
+        // swords on bamboo is an exception
+        if (stack.getItem() instanceof SwordItem) {
+            if (state.getBlock() instanceof BambooBlock || state.getBlock() instanceof BambooSaplingBlock) {
+                return 1;
+            }
+        }
+
+        float hardness = state.getHardness(world, pos);
+        if (hardness == -1) // unbreakable
+            return 0;
+
+        boolean effectiveTool = state.getMaterial().canBreakByHand() || stack.isEffectiveOn(state);
+        int penalty = effectiveTool ? 30 : 100;
+        float miningSpeed = stack.getMiningSpeed(state);
+        if (miningSpeed > 1) {
+            // check efficiency for tools
+            int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, stack);
+            if (efficiencyLevel > 0) {
+                miningSpeed += efficiencyLevel * efficiencyLevel + 1;
+            }
+        }
+
+        return miningSpeed / penalty / hardness;
+    }
+
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());

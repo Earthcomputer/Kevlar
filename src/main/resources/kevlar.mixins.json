@@ -3,6 +3,8 @@
   "package": "com.notvanilla.kevlar.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "EntityAccessor",
+    "TurtleEggBlockAccessor"
   ],
   "client": [
   ],
