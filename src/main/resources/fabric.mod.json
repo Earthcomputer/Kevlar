@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "kevlar",
+  "version": "${version}",
+  "name": "Kevlar",
+  "description": "Tech or something",
+  "authors": [
+    "Earthcomputer",
+    "Azteched"
+  ],
+  "contact": {
+    "sources": "https://github.com/Earthcomputer/Kevlar"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/kevlar/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.notvanilla.kevlar.Kevlar"
+    ]
+  },
+  "mixins": [
+    "kevlar.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.7.8+build.189",
+    "fabric": "*",
+    "minecraft": "1.15.2"
+  }
+}
