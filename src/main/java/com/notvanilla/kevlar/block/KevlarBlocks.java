@@ -14,7 +14,7 @@ public class KevlarBlocks {
 
     public static final BlockBreakerBlock BLOCK_BREAKER = registerBlock(
             "block_breaker",
-            new BlockBreakerBlock(FabricBlockSettings.copy(Blocks.FURNACE).build()),
+            new BlockBreakerBlock(FabricBlockSettings.copy(Blocks.DISPENSER).build()),
             ItemGroup.REDSTONE
     );
 
