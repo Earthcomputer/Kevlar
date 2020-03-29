@@ -2,6 +2,7 @@ package com.notvanilla.kevlar;
 
 import com.notvanilla.kevlar.block.KevlarBlocks;
 import com.notvanilla.kevlar.block.entity.KevlarBlockEntities;
+import com.notvanilla.kevlar.conservation.KevlarEnchantments;
 import com.notvanilla.kevlar.item.KevlarItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -17,6 +18,7 @@ public class Kevlar implements ModInitializer {
         KevlarBlocks.register();
         KevlarBlockEntities.register();
         KevlarItems.register();
+        KevlarEnchantments.register();
     }
 
 }

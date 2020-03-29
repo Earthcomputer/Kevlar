@@ -1,9 +1,10 @@
 {
+  "block.kevlar.alfalfa" : "Alfalfa",
   "block.kevlar.block_breaker": "Block Breaker",
   "block.kevlar.planter": "Planter",
 
   "container.kevlar.block_breaker": "Block Breaker",
   "container.kevlar.planter": "Planter",
-  "container.kevlar.planter": "Planter",
-  "block.kevlar.alfalfa" : "Alfalfa"
+
+  "enchantment.kevlar.conservation": "Conservation"
 }
