@@ -11,6 +11,9 @@ public class Kevlar implements ModInitializer {
 
     @Override
     public void onInitialize() {
+
+        //order important here
+
         KevlarBlocks.register();
         KevlarBlockEntities.register();
         KevlarItems.register();

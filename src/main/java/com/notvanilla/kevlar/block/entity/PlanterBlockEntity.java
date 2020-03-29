@@ -78,6 +78,6 @@ public class PlanterBlockEntity extends LootableContainerBlockEntity   {
 
     @Override
     public boolean isValidInvStack(int slot, ItemStack stack) {
-        return PlanterBlock.itemToBlockMap.containsKey(stack.getItem());
+        return PlanterBlock.itemToBlockMap.get().containsKey(stack.getItem());
     }
 }

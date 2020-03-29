@@ -2,8 +2,11 @@ package com.notvanilla.kevlar.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.notvanilla.kevlar.block.entity.PlanterBlockEntity;
+import com.notvanilla.kevlar.item.KevlarItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.container.Container;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
@@ -18,10 +21,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -38,7 +38,43 @@ public class PlanterBlock extends Block implements BlockEntityProvider{
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty TRIGGERED = Properties.TRIGGERED;
 
-    public static final Map<Item, Block> itemToBlockMap = ImmutableMap.<Item, Block>builder()
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+        if(itemStack.hasCustomName()) {
+            BlockEntity be = world.getBlockEntity(pos);
+            if(be instanceof PlanterBlockEntity) {
+                ( (PlanterBlockEntity) be).setCustomName(itemStack.getName());
+            }
+        }
+    }
+
+    @Override
+    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+
+        if(state.getBlock() != newState.getBlock()) {
+            BlockEntity be = world.getBlockEntity(pos);
+
+            if(be instanceof PlanterBlockEntity) {
+                ItemScatterer.spawn(world, pos, (PlanterBlockEntity)be);
+
+            }
+            world.updateHorizontalAdjacent(pos, this);
+            super.onBlockRemoved(state, world, pos, newState, moved);
+        }
+
+    }
+
+    @Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return Container.calculateComparatorOutput(world.getBlockEntity(pos));
+    }
+
+    @Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    public static final Lazy<Map<Item, Block>> itemToBlockMap = new Lazy<>(() -> ImmutableMap.<Item, Block>builder()
             .put(Items.WHEAT_SEEDS, Blocks.WHEAT)
             .put(Items.MELON_SEEDS, Blocks.MELON_STEM)
             .put(Items.PUMPKIN_SEEDS, Blocks.PUMPKIN_STEM)
@@ -57,7 +93,8 @@ public class PlanterBlock extends Block implements BlockEntityProvider{
             .put(Items.ACACIA_SAPLING, Blocks.ACACIA_SAPLING)
             .put(Items.DARK_OAK_SAPLING, Blocks.DARK_OAK_SAPLING)
             .put(Items.SUGAR_CANE, Blocks.SUGAR_CANE)
-            .build();
+            .put(KevlarItems.ALFALFA_SEEDS, KevlarBlocks.ALFALFA)
+            .build());
 
     public PlanterBlock(Settings settings) {
         super(settings);
@@ -137,7 +174,7 @@ public class PlanterBlock extends Block implements BlockEntityProvider{
 
             //Figure out how to know if you can place it and get the block from the item
 
-            Block blockToPlant = itemToBlockMap.get(itemToPlant);
+            Block blockToPlant = itemToBlockMap.get().get(itemToPlant); // :thonk:
 
             if(!(blockToPlant == null)) {
                 BlockState blockStateToPlant = blockToPlant.getDefaultState();
