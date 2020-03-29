@@ -18,12 +18,11 @@ public class FarmlandBlockMixin {
     private boolean shouldProtectDirt(World world, World world2, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity) {
             int conservationLevel = EnchantmentHelper.getEquipmentLevel(KevlarEnchantments.CONSERVATION, (LivingEntity) entity);
-            //noinspection RedundantIfStatement
             if (conservationLevel > 0) {
                 return true;
             }
         }
-        return false;
+        return world.isClient;
     }
 
 }
