@@ -1,6 +1,7 @@
 package com.notvanilla.kevlar.block.entity;
 
 import com.notvanilla.kevlar.block.BlockBreakerBlock;
+import com.notvanilla.kevlar.mixin.BlockSoundGroupAccessor;
 import com.notvanilla.kevlar.mixin.EntityAccessor;
 import com.notvanilla.kevlar.mixin.TurtleEggBlockAccessor;
 import net.fabricmc.fabric.api.util.NbtType;
@@ -15,6 +16,7 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShearsItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -201,14 +203,27 @@ public class BlockBreakerBlockEntity extends LootableContainerBlockEntity implem
         BlockPos posInFront = getPosInFront();
         BlockState stateInFront = world.getBlockState(posInFront);
         ItemStack stack = getInvStack(miningSlot);
-        if (!ItemStack.areItemsEqual(stack, miningStack) || !ItemStack.areTagsEqual(stack, miningStack) || stateInFront.isAir()) {
-            miningSlot = -1;
-            miningStack = ItemStack.EMPTY;
-            world.setBlockBreakingInfo(fakeEntityId, getPosInFront(), -1);
+        if (!ItemStack.areItemsEqual(stack, miningStack)
+                || !ItemStack.areTagsEqual(stack, miningStack)
+                || stateInFront.isAir()
+                || stateInFront.getHardness(world, posInFront) == -1) {
+            abortMining();
             return;
         }
 
         long ticksMined = world.getTime() - startMiningTime;
+
+        if (ticksMined % 4 == 0) {
+            world.playSound(
+                    null,
+                    posInFront,
+                    ((BlockSoundGroupAccessor) stateInFront.getSoundGroup()).getHitSound_common(),
+                    SoundCategory.BLOCKS,
+                    stateInFront.getSoundGroup().volume,
+                    stateInFront.getSoundGroup().pitch
+            );
+        }
+
         float progress = BlockBreakerBlock.calcBlockBreakingDelta(world, posInFront, miningStack, stateInFront) * (ticksMined + 1);
 
         if (progress >= 1) {
@@ -220,5 +235,12 @@ public class BlockBreakerBlockEntity extends LootableContainerBlockEntity implem
                 lastBreakAnimationProgress = animationProgress;
             }
         }
+    }
+
+    public void abortMining() {
+        assert world != null;
+        miningSlot = -1;
+        miningStack = ItemStack.EMPTY;
+        world.setBlockBreakingInfo(fakeEntityId, getPosInFront(), -1);
     }
 }

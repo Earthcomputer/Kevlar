@@ -3,6 +3,7 @@
   "package": "com.notvanilla.kevlar.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockSoundGroupAccessor",
     "EntityAccessor",
     "TurtleEggBlockAccessor"
   ],

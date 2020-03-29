@@ -3,6 +3,7 @@ package com.notvanilla.kevlar.block;
 import com.notvanilla.kevlar.block.entity.BlockBreakerBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.container.Container;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,10 +16,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -62,6 +60,22 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
         }
 
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity be = world.getBlockEntity(pos);
+            if (be instanceof BlockBreakerBlockEntity) {
+                BlockBreakerBlockEntity blockBreaker = (BlockBreakerBlockEntity) be;
+                if (blockBreaker.isMining())
+                    blockBreaker.abortMining();
+                ItemScatterer.spawn(world, pos, blockBreaker);
+                world.updateHorizontalAdjacent(pos, this);
+            }
+
+            super.onBlockRemoved(state, world, pos, newState, moved);
+        }
     }
 
     @Override
@@ -115,6 +129,8 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
             }
 
             if (stateInFront.isAir())
+                return;
+            if (stateInFront.getHardness(world, posInFront) == -1)
                 return;
 
             List<Integer> validSlots = new ArrayList<>(blockBreaker.getInvSize());
@@ -177,6 +193,16 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+    }
+
+    @Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return Container.calculateComparatorOutput(world.getBlockEntity(pos));
     }
 
     @Override
