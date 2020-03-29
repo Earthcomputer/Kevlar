@@ -132,7 +132,7 @@ public class BlockBreakerBlockEntity extends LootableContainerBlockEntity implem
         Block blockInFront = stateInFront.getBlock();
 
         if (!(blockInFront instanceof CommandBlock) && !(blockInFront instanceof StructureBlock) && !(blockInFront instanceof JigsawBlock)) {
-            world.playLevelEvent(null, 2001, pos, Block.getRawIdFromState(stateInFront)); // break
+            world.playLevelEvent(null, 2001, posInFront, Block.getRawIdFromState(stateInFront)); // break
             boolean removed = world.removeBlock(posInFront, false);
             if (removed) {
                 blockInFront.onBroken(world, posInFront, stateInFront);

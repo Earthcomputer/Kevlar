@@ -6,6 +6,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.container.Container;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -60,6 +61,16 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
         }
 
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        if (stack.hasCustomName()) {
+            BlockEntity be = world.getBlockEntity(pos);
+            if (be instanceof BlockBreakerBlockEntity) {
+                ((BlockBreakerBlockEntity) be).setCustomName(stack.getName());
+            }
+        }
     }
 
     @Override
