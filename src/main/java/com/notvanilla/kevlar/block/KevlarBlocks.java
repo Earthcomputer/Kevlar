@@ -46,6 +46,18 @@ public class KevlarBlocks {
             ItemGroup.REDSTONE
     );
 
+    public static final IronRepeaterBlock IRON_REPEATER = registerBlock(
+            "iron_repeater",
+            new IronRepeaterBlock(FabricBlockSettings.copy(Blocks.REPEATER).sounds(BlockSoundGroup.METAL).build()),
+            ItemGroup.REDSTONE
+    );
+
+    public static final GoldRepeaterBlock GOLD_REPEATER = registerBlock(
+            "gold_repeater",
+            new GoldRepeaterBlock(FabricBlockSettings.copy(Blocks.REPEATER).sounds(BlockSoundGroup.METAL).build()),
+            ItemGroup.REDSTONE
+    );
+
     private static <T extends Block> T registerBlock(String name, T block, ItemGroup itemGroup) {
 
         Registry.register(Registry.BLOCK, new Identifier(Kevlar.MOD_ID, name), block);

@@ -8,6 +8,7 @@
     "BlockSoundGroupAccessor",
     "EntityAccessor",
     "FarmlandBlockMixin",
+    "RedstoneWireBlockMixin",
     "TurtleEggBlockAccessor"
   ],
   "client": [

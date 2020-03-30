@@ -1,0 +1,10 @@
+{
+  "parent" : "minecraft:block/repeater_1tick_locked",
+  "textures" : {
+    "particle": "kevlar:block/iron_repeater",
+    "slab": "block/iron_block",
+    "top": "kevlar:block/iron_repeater",
+    "lock": "block/bedrock",
+    "unlit": "block/redstone_torch_off"
+  }
+}

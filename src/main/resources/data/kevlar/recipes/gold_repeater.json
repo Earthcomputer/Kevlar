@@ -1,0 +1,22 @@
+{
+  "type" : "minecraft:crafting_shaped",
+  "pattern" :[
+    "#X#",
+    "III"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:redstone_torch"
+    },
+    "X": {
+      "item": "minecraft:redstone"
+    },
+    "I": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "kevlar:gold_repeater"
+  }
+
+}

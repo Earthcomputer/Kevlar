@@ -1,0 +1,9 @@
+{
+  "parent" : "minecraft:block/repeater_2tick",
+  "textures": {
+    "particle": "kevlar:block/iron_repeater",
+    "slab": "block/iron_block",
+    "top": "kevlar:block/iron_repeater",
+    "unlit": "block/redstone_torch_off"
+  }
+}

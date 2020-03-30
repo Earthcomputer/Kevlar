@@ -17,7 +17,11 @@
   "entrypoints": {
     "main": [
       "com.notvanilla.kevlar.Kevlar"
+    ],
+    "client" : [
+      "com.notvanilla.kevlar.client.KevlarClient"
     ]
+
   },
   "mixins": [
     "kevlar.mixins.json"
