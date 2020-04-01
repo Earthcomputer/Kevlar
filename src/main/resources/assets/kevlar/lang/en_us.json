@@ -9,5 +9,7 @@
   "container.kevlar.block_breaker": "Block Breaker",
   "container.kevlar.planter": "Planter",
 
-  "enchantment.kevlar.conservation": "Conservation"
+  "enchantment.kevlar.conservation": "Conservation",
+
+  "itemGroup.kevlar.kevlar": "Kevlar"
 }
