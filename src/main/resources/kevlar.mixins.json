@@ -8,6 +8,7 @@
     "BlockSoundGroupAccessor",
     "EntityAccessor",
     "FarmlandBlockMixin",
+    "PointOfInterestTypeAccessor",
     "RedstoneWireBlockMixin",
     "TurtleEggBlockAccessor"
   ],

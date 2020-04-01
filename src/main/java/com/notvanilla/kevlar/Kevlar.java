@@ -1,6 +1,7 @@
 package com.notvanilla.kevlar;
 
 import com.notvanilla.kevlar.block.KevlarBlocks;
+import com.notvanilla.kevlar.block.KevlarPointOfInterestTypes;
 import com.notvanilla.kevlar.block.entity.KevlarBlockEntities;
 import com.notvanilla.kevlar.conservation.KevlarEnchantments;
 import com.notvanilla.kevlar.item.KevlarItems;
@@ -19,6 +20,7 @@ public class Kevlar implements ModInitializer {
         KevlarBlockEntities.register();
         KevlarItems.register();
         KevlarEnchantments.register();
+        KevlarPointOfInterestTypes.register();
     }
 
 }
