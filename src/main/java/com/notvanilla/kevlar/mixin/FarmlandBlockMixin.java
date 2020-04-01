@@ -1,6 +1,6 @@
 package com.notvanilla.kevlar.mixin;
 
-import com.notvanilla.kevlar.conservation.KevlarEnchantments;
+import com.notvanilla.kevlar.enchantment.KevlarEnchantments;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

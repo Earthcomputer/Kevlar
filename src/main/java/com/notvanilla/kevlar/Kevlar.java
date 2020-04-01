@@ -3,7 +3,7 @@ package com.notvanilla.kevlar;
 import com.notvanilla.kevlar.block.KevlarBlocks;
 import com.notvanilla.kevlar.block.KevlarPointOfInterestTypes;
 import com.notvanilla.kevlar.block.entity.KevlarBlockEntities;
-import com.notvanilla.kevlar.conservation.KevlarEnchantments;
+import com.notvanilla.kevlar.enchantment.KevlarEnchantments;
 import com.notvanilla.kevlar.item.KevlarItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.server.world.ChunkTicketType;

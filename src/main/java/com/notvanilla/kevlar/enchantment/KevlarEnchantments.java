@@ -1,4 +1,4 @@
-package com.notvanilla.kevlar.conservation;
+package com.notvanilla.kevlar.enchantment;
 
 import com.notvanilla.kevlar.Kevlar;
 import net.minecraft.enchantment.Enchantment;
