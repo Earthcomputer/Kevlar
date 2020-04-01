@@ -1,6 +1,7 @@
 package com.notvanilla.kevlar.block;
 
 import com.notvanilla.kevlar.Kevlar;
+import com.notvanilla.kevlar.wireless.NodeType;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -45,21 +46,27 @@ public class KevlarBlocks {
             ItemGroup.REDSTONE
     );
 
-    public static final WirelessTeleportRepeaterBlock WIRELESS_TELEPORT_REPEATER = registerBlock(
+    public static final WirelessTeleportBlock WIRELESS_TELEPORT_REPEATER = registerBlock(
             "wireless_teleport_repeater",
-            new WirelessTeleportRepeaterBlock(FabricBlockSettings.of(Material.METAL).build()),
+            new WirelessTeleportBlock(NodeType.REPEATER, FabricBlockSettings.of(Material.METAL)
+                    .strength(3.5f, 3.5f)
+                    .build()),
             ItemGroup.REDSTONE
     );
 
     public static final WirelessTeleportTransmitterBlock WIRELESS_TELEPORT_TRANSMITTER = registerBlock(
             "wireless_teleport_transmitter",
-            new WirelessTeleportTransmitterBlock(FabricBlockSettings.of(Material.METAL).build()),
+            new WirelessTeleportTransmitterBlock(FabricBlockSettings.of(Material.METAL)
+                    .strength(3.5f, 3.5f)
+                    .build()),
             ItemGroup.REDSTONE
     );
 
-    public static final WirelessTeleportReceiverBlock WIRELESS_TELEPORT_RECEIVER = registerBlock(
+    public static final WirelessTeleportBlock WIRELESS_TELEPORT_RECEIVER = registerBlock(
             "wireless_teleport_receiver",
-            new WirelessTeleportReceiverBlock(FabricBlockSettings.of(Material.METAL).build()),
+            new WirelessTeleportBlock(NodeType.RECEIVER, FabricBlockSettings.of(Material.METAL)
+                    .strength(3.5f, 3.5f)
+                    .build()),
             ItemGroup.REDSTONE
     );
 
