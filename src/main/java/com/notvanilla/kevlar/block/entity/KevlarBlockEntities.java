@@ -17,6 +17,10 @@ public class KevlarBlockEntities {
             "block_breaker",
             BlockEntityType.Builder.create(BlockBreakerBlockEntity::new, KevlarBlocks.BLOCK_BREAKER)
     );
+    public static final BlockEntityType<WirelessTeleportTransmitterBlockEntity> WIRELESS_TELEPORT_TRANSMITTER = registerBlockEntity(
+            "wireless_teleport_transmitter",
+            BlockEntityType.Builder.create(WirelessTeleportTransmitterBlockEntity::new, KevlarBlocks.WIRELESS_TELEPORT_TRANSMITTER)
+    );
 
     private static <T extends BlockEntity> BlockEntityType<T> registerBlockEntity(String name, BlockEntityType.Builder<T> builder) {
         BlockEntityType<T> blockEntityType = builder.build(null);

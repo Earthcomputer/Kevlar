@@ -2,6 +2,9 @@
   "block.kevlar.alfalfa" : "Alfalfa",
   "block.kevlar.block_breaker": "Block Breaker",
   "block.kevlar.planter": "Planter",
+  "block.kevlar.wireless_teleport_receiver": "Teleport Target",
+  "block.kevlar.wireless_teleport_repeater": "Teleport Booster",
+  "block.kevlar.wireless_teleport_transmitter": "Teleport Sender",
 
   "container.kevlar.block_breaker": "Block Breaker",
   "container.kevlar.planter": "Planter",
