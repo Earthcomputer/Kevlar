@@ -55,14 +55,14 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
         if (warmup >= 10) {
             warmup = 0;
             TeleportationNode node = path.remove(0);
-            world.getChunkManager().addTicket(Kevlar.REDSTONE_TICKET, new ChunkPos(node.getPos()), 1, node.getPos());
+            world.getChunkManager().addTicket(Kevlar.REDSTONE_11TICK_TICKET, new ChunkPos(node.getPos()), 1, node.getPos());
             BlockState state = world.getBlockState(node.getPos());
             Block block = state.getBlock();
             if (block == KevlarBlocks.WIRELESS_TELEPORT_REPEATER
                     || block == KevlarBlocks.WIRELESS_TELEPORT_TRANSMITTER
                     || block == KevlarBlocks.WIRELESS_TELEPORT_RECEIVER) {
                 world.setBlockState(node.getPos(), state.with(Properties.POWERED, true));
-                world.getBlockTickScheduler().schedule(node.getPos(), block, 2);
+                world.getBlockTickScheduler().schedule(node.getPos(), block, 10);
                 if (path.isEmpty()) {
                     teleport(node.getPos());
                     path = null;

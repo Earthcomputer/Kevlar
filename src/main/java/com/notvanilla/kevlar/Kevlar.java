@@ -14,7 +14,7 @@ public class Kevlar implements ModInitializer {
 
     public static final String MOD_ID = "kevlar";
 
-    public static final ChunkTicketType<BlockPos> REDSTONE_TICKET = ChunkTicketType.create("kevlar:redstone", Vec3i::compareTo, 3);
+    public static final ChunkTicketType<BlockPos> REDSTONE_11TICK_TICKET = ChunkTicketType.create("kevlar:redstone", Vec3i::compareTo, 11);
 
     @Override
     public void onInitialize() {
