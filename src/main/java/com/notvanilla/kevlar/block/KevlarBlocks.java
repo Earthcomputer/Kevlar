@@ -33,6 +33,18 @@ public class KevlarBlocks {
             ItemGroup.REDSTONE
     );
 
+    public static final IronButtonBlock IRON_BUTTON = registerBlock(
+            "iron_button",
+            new IronButtonBlock(FabricBlockSettings.copy(Blocks.STONE_BUTTON).sounds(BlockSoundGroup.METAL).hardness(2.0f).build()),
+            ItemGroup.REDSTONE
+    );
+
+    public static final GoldButtonBlock GOLD_BUTTON = registerBlock(
+            "gold_button",
+            new GoldButtonBlock(FabricBlockSettings.copy(Blocks.STONE_BUTTON).sounds(BlockSoundGroup.METAL).hardness(2.0f).build()),
+            ItemGroup.REDSTONE
+    );
+
     public static final WirelessTeleportRepeaterBlock WIRELESS_TELEPORT_REPEATER = registerBlock(
             "wireless_teleport_repeater",
             new WirelessTeleportRepeaterBlock(FabricBlockSettings.of(Material.METAL).build()),
