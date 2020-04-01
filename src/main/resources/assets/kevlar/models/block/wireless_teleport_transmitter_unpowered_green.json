@@ -1,0 +1,9 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "top": "block/green_concrete",
+    "bottom": "block/iron_block",
+    "side": "kevlar:block/wireless_teleport_transmitter_unpowered_green"
+  }
+}
+

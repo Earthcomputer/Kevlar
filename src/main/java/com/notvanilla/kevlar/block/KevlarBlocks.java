@@ -25,12 +25,29 @@ public class KevlarBlocks {
             "alfalfa",
             new AlfalfaBlock(FabricBlockSettings.copy(Blocks.WHEAT).build()),
             null
-
     );
 
     public static final BlockBreakerBlock BLOCK_BREAKER = registerBlock(
             "block_breaker",
             new BlockBreakerBlock(FabricBlockSettings.copy(Blocks.DISPENSER).build()),
+            ItemGroup.REDSTONE
+    );
+
+    public static final WirelessTeleportRepeaterBlock WIRELESS_TELEPORT_REPEATER = registerBlock(
+            "wireless_teleport_repeater",
+            new WirelessTeleportRepeaterBlock(FabricBlockSettings.of(Material.METAL).build()),
+            ItemGroup.REDSTONE
+    );
+
+    public static final WirelessTeleportTransmitterBlock WIRELESS_TELEPORT_TRANSMITTER = registerBlock(
+            "wireless_teleport_transmitter",
+            new WirelessTeleportTransmitterBlock(FabricBlockSettings.of(Material.METAL).build()),
+            ItemGroup.REDSTONE
+    );
+
+    public static final WirelessTeleportReceiverBlock WIRELESS_TELEPORT_RECEIVER = registerBlock(
+            "wireless_teleport_receiver",
+            new WirelessTeleportReceiverBlock(FabricBlockSettings.of(Material.METAL).build()),
             ItemGroup.REDSTONE
     );
 
