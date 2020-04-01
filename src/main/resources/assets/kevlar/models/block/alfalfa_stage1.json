@@ -1,0 +1,6 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "kevlar:block/alfalfa_stage1"
+  }
+}

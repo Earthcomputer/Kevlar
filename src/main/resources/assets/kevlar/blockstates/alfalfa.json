@@ -1,12 +1,12 @@
 {
   "variants": {
-    "age=0": { "model": "block/alfalfa_stage0" },
-    "age=1": { "model": "block/alfalfa_stage1" },
-    "age=2": { "model": "block/alfalfa_stage2" },
-    "age=3": { "model": "block/alfalfa_stage3" },
-    "age=4": { "model": "block/alfalfa_stage4" },
-    "age=5": { "model": "block/alfalfa_stage5" },
-    "age=6": { "model": "block/alfalfa_stage6" },
-    "age=7": { "model": "block/alfalfa_stage7" }
+    "age=0": { "model": "kevlar:block/alfalfa_stage0" },
+    "age=1": { "model": "kevlar:block/alfalfa_stage1" },
+    "age=2": { "model": "kevlar:block/alfalfa_stage2" },
+    "age=3": { "model": "kevlar:block/alfalfa_stage3" },
+    "age=4": { "model": "kevlar:block/alfalfa_stage4" },
+    "age=5": { "model": "kevlar:block/alfalfa_stage5" },
+    "age=6": { "model": "kevlar:block/alfalfa_stage6" },
+    "age=7": { "model": "kevlar:block/alfalfa_stage7" }
   }
 }

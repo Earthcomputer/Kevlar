@@ -15,7 +15,8 @@ public class KevlarClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlocks(
                 RenderLayer.getCutout(),
                 KevlarBlocks.IRON_REPEATER,
-                KevlarBlocks.GOLD_REPEATER
+                KevlarBlocks.GOLD_REPEATER,
+                KevlarBlocks.ALFALFA
         );
     }
 }
