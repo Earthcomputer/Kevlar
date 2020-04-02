@@ -8,7 +8,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3i;
 
 import java.util.*;
 import java.util.function.Function;
@@ -127,7 +126,7 @@ public abstract class KevlarNetwork<N extends KevlarNode> {
                     .filter(nodePredicate)
                     .filter(n -> !n.getPos().equals(node_f))
                     .filter(n -> MathHelper.approximatelyEquals(
-                            distance - distances.getDouble(n),
+                            distance - distances.getDouble(n.getPos()),
                             Math.sqrt(n.getPos().getSquaredDistance(node_f.getX(), node_f.getY(), node_f.getZ(), false))
                     ))
                     .findAny()
