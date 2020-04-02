@@ -1,6 +1,7 @@
 package com.notvanilla.kevlar.block.entity;
 
 import com.notvanilla.kevlar.block.BlockBreakerBlock;
+import com.notvanilla.kevlar.container.Generic1x1Container;
 import com.notvanilla.kevlar.mixin.BlockSoundGroupAccessor;
 import com.notvanilla.kevlar.mixin.EntityAccessor;
 import com.notvanilla.kevlar.mixin.TurtleEggBlockAccessor;
@@ -8,7 +9,6 @@ import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.container.Container;
-import net.minecraft.container.Generic3x3Container;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerInventory;
@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 
 public class BlockBreakerBlockEntity extends LootableContainerBlockEntity implements Tickable {
 
-    private DefaultedList<ItemStack> items = DefaultedList.ofSize(9, ItemStack.EMPTY);
+    private DefaultedList<ItemStack> items = DefaultedList.ofSize(1, ItemStack.EMPTY);
 
     private int fakeEntityId;
     private int miningSlot = -1;
@@ -63,7 +63,7 @@ public class BlockBreakerBlockEntity extends LootableContainerBlockEntity implem
 
     @Override
     protected Container createContainer(int syncId, PlayerInventory playerInventory) {
-        return new Generic3x3Container(syncId, playerInventory, this);
+        return new Generic1x1Container(syncId, playerInventory, this);
     }
 
     @Override

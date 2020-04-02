@@ -1,6 +1,8 @@
 package com.notvanilla.kevlar.block;
 
 import com.notvanilla.kevlar.block.entity.BlockBreakerBlockEntity;
+import com.notvanilla.kevlar.container.KevlarContainers;
+import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.container.Container;
@@ -29,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockBreakerBlock extends Block implements BlockEntityProvider {
+public class BlockBreakerBlock extends BlockWithEntity {
 
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty TRIGGERED = Properties.TRIGGERED;
@@ -41,6 +43,11 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
                         .with(FACING, Direction.NORTH)
                         .with(TRIGGERED, false)
         );
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Override
@@ -57,7 +64,7 @@ public class BlockBreakerBlock extends Block implements BlockEntityProvider {
 
         BlockEntity be = world.getBlockEntity(pos);
         if (be instanceof BlockBreakerBlockEntity) {
-            player.openContainer((BlockBreakerBlockEntity) be);
+            KevlarContainers.open(KevlarContainers.GENERIC_1X1, player, pos, ((BlockBreakerBlockEntity) be).getName());
         }
 
         return ActionResult.SUCCESS;
