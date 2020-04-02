@@ -115,7 +115,7 @@ public class KevlarBlocks {
 
     public static final WirelessTeleportBlock WIRELESS_TELEPORT_RECEIVER = registerBlock(
             "wireless_teleport_receiver",
-            new WirelessTeleportBlock(NodeType.RECEIVER, FabricBlockSettings.of(Material.METAL)
+            new WirelessTeleportReceiverBlock(FabricBlockSettings.of(Material.METAL)
                     .strength(3.5f, 3.5f)
                     .build()),
             KevlarItemGroup.INSTANCE

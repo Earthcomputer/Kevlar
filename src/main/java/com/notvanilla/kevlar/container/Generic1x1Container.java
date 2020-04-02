@@ -18,7 +18,7 @@ public class Generic1x1Container extends Container {
         inv.onInvOpen(playerInv.player);
 
         // 1x1 inv
-        addSlot(new Slot(inv, 0, 80, 20));
+        addSlot(createTheSlot(inv, 80, 20));
 
         // player main inv
         for (int y = 0; y < 3; y++) {
@@ -31,6 +31,10 @@ public class Generic1x1Container extends Container {
         for (int x = 0; x < 9; x++) {
             addSlot(new Slot(playerInv, x, 8 + x * 18, 109));
         }
+    }
+
+    protected Slot createTheSlot(Inventory inv, int x, int y) {
+        return new Slot(inv, 0, x, y);
     }
 
     @Override

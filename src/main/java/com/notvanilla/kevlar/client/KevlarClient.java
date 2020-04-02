@@ -30,6 +30,7 @@ public class KevlarClient implements ClientModInitializer {
         );
 
         registerScreenProvider(KevlarContainers.GENERIC_1X1, Generic1x1ContainerScreen::new);
+        registerScreenProvider(KevlarContainers.WIRELESS_TELEPORT_RECEIVER, Generic1x1ContainerScreen::new);
     }
 
     @SuppressWarnings("unchecked")

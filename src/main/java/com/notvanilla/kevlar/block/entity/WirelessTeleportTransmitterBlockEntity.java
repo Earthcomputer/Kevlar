@@ -29,6 +29,7 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
     private List<TeleportationNode> path = null;
     private UUID teleportee = null;
     private int warmup;
+    private int cost;
 
     public WirelessTeleportTransmitterBlockEntity() {
         super(KevlarBlockEntities.WIRELESS_TELEPORT_TRANSMITTER);
@@ -38,6 +39,7 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
         this.path = path;
         this.teleportee = player.getUuid();
         warmup = 0;
+        cost = 0;
     }
 
     public boolean hasPath() {
@@ -54,6 +56,7 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
         warmup++;
         if (warmup >= 10) {
             warmup = 0;
+            cost++;
             TeleportationNode node = path.remove(0);
             world.getChunkManager().addTicket(Kevlar.REDSTONE_11TICK_TICKET, new ChunkPos(node.getPos()), 1, node.getPos());
             BlockState state = world.getBlockState(node.getPos());
@@ -81,6 +84,15 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
             return;
 
         ((ServerWorld) world).getChunkManager().addTicket(ChunkTicketType.POST_TELEPORT, new ChunkPos(destination), 1, player.getEntityId());
+
+        BlockEntity be = world.getBlockEntity(destination);
+        if (be instanceof WirelessTeleportReceiverBlockEntity) {
+            WirelessTeleportReceiverBlockEntity receiver = (WirelessTeleportReceiverBlockEntity) be;
+            if (receiver.getInvStack(0).getCount() < cost)
+                return;
+            receiver.getInvStack(0).decrement(cost);
+        }
+
         player.stopRiding();
         if (player.isSleeping())
             player.wakeUp(true, true);
@@ -117,6 +129,7 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
         }
 
         warmup = tag.getByte("Warmup");
+        cost = tag.getInt("Cost");
     }
 
     @Override
@@ -136,6 +149,7 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
         }
 
         tag.putByte("Warmup", (byte) warmup);
+        tag.putInt("Cost", cost);
 
         return tag;
     }

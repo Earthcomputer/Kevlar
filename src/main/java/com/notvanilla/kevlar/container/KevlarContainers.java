@@ -2,11 +2,8 @@ package com.notvanilla.kevlar.container;
 
 import com.notvanilla.kevlar.Kevlar;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.Container;
 import net.minecraft.container.NameableContainerFactory;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 public class KevlarContainers {
 
     public static final Identifier GENERIC_1X1 = registerContainer("generic_1x1");
+    public static final Identifier WIRELESS_TELEPORT_RECEIVER = registerContainer("wireless_teleport_receiver");
 
     private static Identifier registerContainer(String name) {
         Identifier id = new Identifier(Kevlar.MOD_ID, name);
