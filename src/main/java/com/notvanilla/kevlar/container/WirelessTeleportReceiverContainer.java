@@ -16,7 +16,7 @@ public class WirelessTeleportReceiverContainer extends Generic1x1Container {
         return new Slot(inv, 0, x, y) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                return stack.getItem() == Items.ENDER_PEARL;
+                return stack.getItem() == Items.ENDER_EYE;
             }
         };
     }

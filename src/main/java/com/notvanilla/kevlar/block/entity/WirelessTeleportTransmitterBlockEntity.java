@@ -15,6 +15,8 @@ import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
@@ -93,6 +95,8 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
             receiver.getInvStack(0).decrement(cost);
         }
 
+        world.playSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1, 1, false);
+
         player.stopRiding();
         if (player.isSleeping())
             player.wakeUp(true, true);
@@ -106,6 +110,8 @@ public class WirelessTeleportTransmitterBlockEntity extends BlockEntity implemen
                 player.pitch,
                 ImmutableSet.of(PlayerPositionLookS2CPacket.Flag.X, PlayerPositionLookS2CPacket.Flag.Y, PlayerPositionLookS2CPacket.Flag.Z)
         );
+
+        world.playSoundFromEntity(null, player, SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 1, 1);
     }
 
     @Override

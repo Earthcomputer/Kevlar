@@ -47,7 +47,7 @@ public class WirelessTeleportReceiverBlockEntity extends LootableContainerBlockE
 
     @Override
     public boolean isValidInvStack(int slot, ItemStack stack) {
-        return stack.getItem() == Items.ENDER_PEARL;
+        return stack.getItem() == Items.ENDER_EYE;
     }
 
     @Override
