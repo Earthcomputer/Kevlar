@@ -11,6 +11,9 @@ import java.util.Map;
 
 public class FeedingUtil {
     public static  Map<EntityType<? extends AnimalEntity>, Item> animalToFastBreedingPlant = ImmutableMap.of(
-            EntityType.COW, KevlarItems.ALFALFA
+            EntityType.COW, KevlarItems.ALFALFA,
+            EntityType.RABBIT, KevlarItems.ALFALFA,
+            EntityType.PIG, KevlarItems.ALFALFA,
+            EntityType.MOOSHROOM, KevlarItems.ALFALFA
     );
 }

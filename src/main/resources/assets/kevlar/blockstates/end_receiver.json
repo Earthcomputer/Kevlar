@@ -1,0 +1,11 @@
+{
+  "variants" : {
+    "powered=false" : {
+      "model" : "kevlar:block/end_receiver_off"
+    },
+
+    "powered=true" : {
+      "model" : "kevlar:block/end_receiver_on"
+    }
+  }
+}

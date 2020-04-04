@@ -21,7 +21,7 @@ public class DimensionReceiverBlock extends Block {
     public final DimensionType dimension;
 
     public DimensionReceiverBlock(Settings settings, DimensionType dimension) {
-        super(settings);
+        super(settings.nonOpaque());
         setDefaultState(
                 stateManager.getDefaultState().with(POWERED, false)
         );

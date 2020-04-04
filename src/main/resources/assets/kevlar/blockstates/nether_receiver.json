@@ -1,0 +1,11 @@
+{
+  "variants" : {
+    "powered=false" : {
+      "model" : "kevlar:block/nether_receiver_off"
+    },
+
+    "powered=true" : {
+      "model" : "kevlar:block/nether_receiver_on"
+    }
+  }
+}

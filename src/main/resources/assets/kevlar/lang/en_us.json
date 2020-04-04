@@ -6,6 +6,19 @@
   "block.kevlar.wireless_teleport_repeater": "Teleport Booster",
   "block.kevlar.wireless_teleport_transmitter": "Teleport Sender",
 
+  "block.kevlar.nether_receiver" : "Nether Receiver",
+  "block.kevlar.nether_trainsmitter" : "Nether Transmitter",
+  "block.kevlar.end_receiver" : "End Receiver",
+  "block.kevlar.end_transmitter" : "End Transmitter",
+  "block.kevlar.overworld_receiver" : "Overworld Receiver",
+  "block.kevlar.overworld_transmitter" : "Overworld Transmitter",
+
+  "block.kevlar.iron_button" : "Iron Button",
+  "block.kevlar.iron_repeater" : "Iron Repeater",
+  "block.kevlar.gold_button" : "Gold Button",
+  "block.kevlar.gold_repeater" : "Gold Repeater",
+
+
   "container.kevlar.block_breaker": "Block Breaker",
   "container.kevlar.planter": "Planter",
   "container.kevlar.wireless_teleport_receiver": "Teleport Target",

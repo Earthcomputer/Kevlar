@@ -33,7 +33,7 @@ public class DimensionTransmitterBlock extends Block {
     private boolean isTriggering = false;
 
     public DimensionTransmitterBlock(Settings settings, DimensionType dimension) {
-        super(settings);
+        super(settings.nonOpaque());
         this.dimension = dimension;
         setDefaultState(
                 stateManager.getDefaultState().with(TRIGGERED, false)
@@ -62,6 +62,7 @@ public class DimensionTransmitterBlock extends Block {
         DimensionType currentDimension = world.getDimension().getType();
         if(isTriggering) {
             sendPulseToDimension(pos, world.getServer().getWorld(dimension), currentDimension);
+            world.setBlockState(pos, state.with(TRIGGERED, false));
         }
     }
 
@@ -71,9 +72,7 @@ public class DimensionTransmitterBlock extends Block {
             boolean isTriggered = state.get(TRIGGERED);
             boolean isPowered = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
 
-            if(isTriggered && !isPowered)
-                world.setBlockState(pos, state.with(TRIGGERED, false), 4);
-            else if(!isTriggered && isPowered) {
+            if(!isTriggered && isPowered) {
                 world.setBlockState(pos, state.with(TRIGGERED, true));
                 isTriggering = true;
                 world.getBlockTickScheduler().schedule(pos, this, getTickRate(world));
@@ -93,6 +92,12 @@ public class DimensionTransmitterBlock extends Block {
             if(dimension == DimensionType.THE_NETHER) {
                 int newX = pos.getX() / 8;
                 int newZ = pos.getZ() / 8;
+                posInNewDimension = new BlockPos(newX, pos.getY(), newZ);
+            }
+
+            if(dimension == DimensionType.OVERWORLD && currentDimension == DimensionType.THE_NETHER) {
+                int newX = pos.getX() * 8;
+                int newZ = pos.getZ() * 8;
                 posInNewDimension = new BlockPos(newX, pos.getY(), newZ);
             }
 
