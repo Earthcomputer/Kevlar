@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "WWW",
+    "SSS",
     "SPS",
     "SRS"
   ],
   "key": {
-    "W": {
-      "tag": "minecraft:planks"
-    },
     "S": {
       "item": "minecraft:cobblestone"
     },
     "P": {
-      "tag": "minecraft:saplings"
+      "tag": "minecraft:golden_hoe"
     },
     "R": {
       "item": "minecraft:redstone"

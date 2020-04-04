@@ -6,7 +6,7 @@
     {
       "type": "spotlight",
       "item": "kevlar:alfalfa",
-      "text": "This crop can be used to breed any animal that you would normally breed with wheat, but with a shorter cooldown time.<br>Plant the seeds on farmland, it works just like wheat!"
+      "text": "This crop can be used to breed rabbits as well as any animal that you would normally breed with wheat, but with a shorter cooldown time before the animals can breed again.<br>Plant the seeds on farmland, it works just like wheat!"
     }
   ]
 }

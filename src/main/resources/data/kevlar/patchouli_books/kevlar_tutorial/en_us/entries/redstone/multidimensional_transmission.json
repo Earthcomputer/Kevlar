@@ -1,0 +1,16 @@
+{
+  "name": "Interdimensional <br> Redstone",
+  "icon": "kevlar:end_transmitter",
+  "category": "redstone",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Multidimensional Transmitters and Receivers allow redstone signals to be transmitted through dimensions to corresponding coordinates. Any receiver placed in the correct dimension will receiver pulses from corresponding transmitters within a 5 block spherical radius in another dimension. "
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:nether_receiver",
+      "recipe2": "kevlar:nether_transmitter"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
     "1": "block/end_stone",
     "4": "block/stonecutter_bottom",
     "5": "kevlar:block/dimension_receiver_off",
-    "particle": "block:end_stone"
+    "particle": "block/end_stone"
   },
   "elements": [
     {
