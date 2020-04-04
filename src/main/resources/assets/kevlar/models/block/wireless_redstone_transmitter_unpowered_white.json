@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "kevlar:block/antenna",
-		"1": "block/blue_concrete",
-		"particle": "block/something :)"
+		"0": "kevlar:block/wireless_redstone_transmitter_off",
+		"1": "block/white_concrete",
+		"particle": "#0"
 	},
 	"elements": [
 		{

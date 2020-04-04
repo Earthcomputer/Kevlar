@@ -56,6 +56,14 @@ public abstract class KevlarNetwork<N extends KevlarNode> {
         return cell != null && cell.nodes.containsKey(pos);
     }
 
+    public Stream<N> getAllNodes() {
+        return cells.values().stream().flatMap(cell -> cell.nodes.values().stream());
+    }
+
+    public Stream<N> getNodesWithinDistance(BlockPos pos) {
+        return getNodesWithinDistance(pos, maxTransmissionDistance);
+    }
+
     public Stream<N> getNodesWithinDistance(BlockPos pos, double distance) {
         if (distance > maxTransmissionDistance)
             throw new IllegalArgumentException("Distance " + distance + " greater than max allowed " + maxTransmissionDistance);
@@ -80,37 +88,7 @@ public abstract class KevlarNetwork<N extends KevlarNode> {
 
     public List<N> shortestPath(N source, Predicate<N> destination, Predicate<N> nodePredicate, double maxDistance) {
         Object2DoubleMap<BlockPos> distances = new Object2DoubleOpenHashMap<>();
-        distances.put(source.getPos(), 0);
-        TreeSet<BlockPos> nodesToProcess = new TreeSet<>(
-                Comparator.<BlockPos>comparingDouble(distances::getDouble)
-                .thenComparing(Function.identity())
-        );
-        nodesToProcess.add(source.getPos());
-
-        BlockPos destinationNode = null;
-
-        while (!nodesToProcess.isEmpty()) {
-            BlockPos node = nodesToProcess.pollFirst();
-            assert node != null;
-
-            if (destination.test(getNode(node))) {
-                destinationNode = node;
-                break;
-            }
-
-            double distance = distances.getDouble(node);
-            getNodesWithinDistance(node, maxDistance)
-                    .filter(nodePredicate)
-                    .forEach(n -> {
-                double newDistance = distance + Math.sqrt(n.getPos().getSquaredDistance(node.getX(), node.getY(), node.getZ(), false));
-                double oldDistance = distances.getOrDefault(n.getPos(), Double.POSITIVE_INFINITY);
-                if (newDistance < oldDistance) {
-                    nodesToProcess.remove(n.getPos());
-                    distances.put(n.getPos(), newDistance);
-                    nodesToProcess.add(n.getPos());
-                }
-            });
-        }
+        BlockPos destinationNode = dijkstraFirstPass(source, destination, nodePredicate, maxDistance, distances);
 
         if (destinationNode == null)
             return null;
@@ -140,6 +118,59 @@ public abstract class KevlarNetwork<N extends KevlarNode> {
         Collections.reverse(path);
 
         return path;
+    }
+
+    public double getDistance(N source, Predicate<N> destination, Predicate<N> nodePredicate) {
+        return getDistance(source, destination, nodePredicate, maxTransmissionDistance);
+    }
+
+    public double getDistance(N source, Predicate<N> destination, Predicate<N> nodePredicate, double maxDistance) {
+        Object2DoubleMap<BlockPos> distances = new Object2DoubleOpenHashMap<>();
+        BlockPos destPos = dijkstraFirstPass(source, destination, nodePredicate, maxDistance, distances);
+        return destPos == null ? Double.POSITIVE_INFINITY : distances.getDouble(destPos);
+    }
+
+    public Object2DoubleMap<BlockPos> getPathLengthsFrom(N source, Predicate<N> nodePredicate) {
+        return getPathLengthsFrom(source, nodePredicate, maxTransmissionDistance);
+    }
+
+    public Object2DoubleMap<BlockPos> getPathLengthsFrom(N source, Predicate<N> nodePredicate, double maxDistance) {
+        Object2DoubleMap<BlockPos> distances = new Object2DoubleOpenHashMap<>();
+        dijkstraFirstPass(source, node -> false, nodePredicate, maxDistance, distances);
+        return distances;
+    }
+
+    private BlockPos dijkstraFirstPass(N source, Predicate<N> destination, Predicate<N> nodePredicate, double maxDistance, Object2DoubleMap<BlockPos> distances) {
+        distances.put(source.getPos(), 0);
+        TreeSet<BlockPos> nodesToProcess = new TreeSet<>(
+                Comparator.<BlockPos>comparingDouble(distances::getDouble)
+                        .thenComparing(Function.identity())
+        );
+        nodesToProcess.add(source.getPos());
+
+        while (!nodesToProcess.isEmpty()) {
+            BlockPos node = nodesToProcess.pollFirst();
+            assert node != null;
+
+            if (destination.test(getNode(node))) {
+                return node;
+            }
+
+            double distance = distances.getDouble(node);
+            getNodesWithinDistance(node, maxDistance)
+                    .filter(nodePredicate)
+                    .forEach(n -> {
+                        double newDistance = distance + Math.sqrt(n.getPos().getSquaredDistance(node.getX(), node.getY(), node.getZ(), false));
+                        double oldDistance = distances.getOrDefault(n.getPos(), Double.POSITIVE_INFINITY);
+                        if (newDistance < oldDistance) {
+                            nodesToProcess.remove(n.getPos());
+                            distances.put(n.getPos(), newDistance);
+                            nodesToProcess.add(n.getPos());
+                        }
+                    });
+        }
+
+        return null;
     }
 
     private Cell<N> getCell(int x, int z) {

@@ -1,8 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "Downloads/replacement",
-		"2": "kevlar:block/wireless_redstone_repeater_and_receiver_on" //also off texture provided :)
+		"1": "block/white_concrete",
+		"2": "kevlar:block/wireless_redstone_repeater_and_receiver_off",
+		"particle": "#2"
 	},
 	"elements": [
 		{

@@ -1,0 +1,6 @@
+{
+	"parent": "kevlar:block/wireless_redstone_repeater_unpowered_white",
+	"textures": {
+		"1": "block/red_concrete"
+	}
+}
