@@ -1,0 +1,13 @@
+{
+  "variants" : {
+    "triggered=false" : {
+      "model":"kevlar:block/nether_transmitter_off"
+    },
+
+    "triggered=true" : {
+      "model": "kevlar:block/nether_transmitter_on"
+    }
+
+  }
+
+}

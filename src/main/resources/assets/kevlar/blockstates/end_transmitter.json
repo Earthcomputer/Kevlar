@@ -1,0 +1,13 @@
+{
+  "variants" : {
+    "triggered=false" : {
+      "model":"kevlar:block/end_transmitter_off"
+    },
+
+    "triggered=true" : {
+      "model": "kevlar:block/end_transmitter_on"
+    }
+
+  }
+
+}

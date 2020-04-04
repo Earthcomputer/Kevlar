@@ -1,0 +1,11 @@
+{
+  "variants" : {
+    "powered=false" : {
+      "model" : "kevlar:block/overworld_receiver_off"
+    },
+
+    "powered=true" : {
+      "model" : "kevlar:block/overworld_receiver_on"
+    }
+  }
+}
