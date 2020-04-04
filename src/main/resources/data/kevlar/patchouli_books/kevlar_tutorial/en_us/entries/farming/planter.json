@@ -1,0 +1,16 @@
+{
+  "name": "Planter",
+  "icon": "kevlar:planter",
+  "category": "farming",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "kevlar:planter",
+      "text": "This block does what dispenser should always have been able to do! Place seeds, saplings and other plantable things into this block, power it and it will be placed in front."
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:planter"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Introduction",
+  "icon": "kevlar:wireless_teleport_receiver",
+  "category": "networks",
+  "priority": true,
+  "pages": [
+    {
+      "type": "text",
+      "text": "Networks in Kevlar allow you to transfer stuff long distances without the need for long wires or pipes in between your components."
+    },
+    {
+      "type": "text",
+      "text": "In general terms, a network has transmitter blocks and receiver blocks. A network also has a range, so if you try to transfer something from a transmitter to a receiver and they are further than this limit away, then you need a booster within range of each of them. In this way, you create a network of transmitters, receivers and boosters."
+    },
+    {
+      "type": "text",
+      "text": "To avoid signal interference, each type of network has 16 different colors. Right click on any of the network-related block with a dye to change its color."
+    }
+  ]
+}

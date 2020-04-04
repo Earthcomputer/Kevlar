@@ -1,0 +1,16 @@
+{
+  "name": "Buttons",
+  "icon": "kevlar:gold_button",
+  "category": "redstone",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Custom buttons in Kevlar.$(li)Iron buttons stay on for 5 redstone ticks, or half a second.$(li)Gold buttons stay on for 1 redstone tick, short enough to short-pulse a piston."
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:iron_button",
+      "recipe2": "kevlar:gold_button"
+    }
+  ]
+}

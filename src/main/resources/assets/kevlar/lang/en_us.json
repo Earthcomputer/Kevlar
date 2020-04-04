@@ -12,5 +12,8 @@
 
   "enchantment.kevlar.conservation": "Conservation",
 
-  "itemGroup.kevlar.kevlar": "Kevlar"
+  "itemGroup.kevlar.kevlar": "Kevlar",
+
+  "kevlar.tutorial.name": "Kevlar Tutorial",
+  "kevlar.tutorial.landing_text": "Welcome to Kevlar, your early-to-mid-game tech mod of choice!"
 }

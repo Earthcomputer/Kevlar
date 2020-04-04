@@ -1,0 +1,9 @@
+{
+  "name": "kevlar.tutorial.name",
+  "landing_text": "kevlar.tutorial.landing_text",
+  "version": 1,
+  "model": "kevlar:tutorial_book",
+  "book_texture": "patchouli:textures/gui/book_red.png",
+  "creative_tab": "kevlar.kevlar",
+  "show_progress": false
+}

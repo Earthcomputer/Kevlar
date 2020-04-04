@@ -1,0 +1,16 @@
+{
+  "name": "Repeaters",
+  "icon": "kevlar:gold_repeater",
+  "category": "redstone",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Custom repeaters in Kevlar.$(li)Iron repeaters have a delay of 4 to 16 redstone ticks, 4 times as long as a vanilla repeater.$(li)Gold repeaters have a delay of 16 to 64 redstone ticks, 16 times as long as a vanilla repeater."
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:iron_repeater",
+      "recipe2": "kevlar:gold_repeater"
+    }
+  ]
+}

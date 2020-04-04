@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PCP",
+    "PRP",
+    "PIP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:purpur_block"
+    },
+    "C": {
+      "tag": "c:concrete"
+    },
+    "R": {
+      "item": "minecraft:repeater"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "kevlar:wireless_teleport_repeater"
+  }
+}

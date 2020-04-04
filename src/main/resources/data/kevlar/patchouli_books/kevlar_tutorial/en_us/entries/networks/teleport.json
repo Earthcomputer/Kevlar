@@ -1,0 +1,24 @@
+{
+  "name": "Teleportation Network",
+  "icon": "kevlar:wireless_teleport_transmitter",
+  "category": "networks",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Use this network to teleport the player from a Teleport Sender to the nearest Teleport Target of the same color on the network, as determined by the shortest path through Teleport Boosters from the sender to the target."
+    },
+    {
+      "type": "text",
+      "text": "Right click on the Teleport Sender to trigger a teleport. You need to fuel the teleport by putting eyes of ender in the Teleport Target. A teleport will consume 1 eye of ender per Sender, Booster and Target on the path."
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:wireless_teleport_transmitter",
+      "recipe2": "kevlar:wireless_teleport_repeater"
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:wireless_teleport_receiver"
+    }
+  ]
+}

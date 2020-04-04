@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PCP",
+    "PEP",
+    "PIP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:purpur_block"
+    },
+    "C": {
+      "tag": "c:concrete"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "kevlar:wireless_teleport_receiver"
+  }
+}

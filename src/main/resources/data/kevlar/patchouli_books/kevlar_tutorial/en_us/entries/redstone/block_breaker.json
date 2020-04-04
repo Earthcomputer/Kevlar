@@ -1,0 +1,16 @@
+{
+  "name": "Block Breaker",
+  "icon": "kevlar:block_breaker",
+  "category": "redstone",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "kevlar:block_breaker",
+      "text": "Use this component to break blocks in front of it.<br>Place the appropriate tool inside the block and trigger it with a redstone pulse each time you want to break a block."
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:block_breaker"
+    }
+  ]
+}

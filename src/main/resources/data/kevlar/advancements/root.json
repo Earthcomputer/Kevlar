@@ -1,0 +1,35 @@
+{
+  "display": {
+    "title": {
+      "translate": "advancement.kevlar"
+    },
+    "description": {
+      "translate": "advancement.kevlar.description"
+    },
+    "icon": {
+      "item": "kevlar:alfalfa"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+  },
+  "criteria": {
+    "c1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:redstone"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "loot": [
+      "kevlar:advancements/tutorial_book"
+    ]
+  }
+}
