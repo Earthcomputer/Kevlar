@@ -39,6 +39,7 @@ public class WirelessRedstoneBlock extends WirelessBlock<RedstoneNode> {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         RedstoneNetwork network = getNetwork(world);
+
         RedstoneNode node = network.getNode(pos);
         if (node != null) {
             if (receiveSignal(network, node, world, pos, state)) {
