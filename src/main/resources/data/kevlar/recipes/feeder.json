@@ -11,10 +11,12 @@
     },
     "I": {
       "item": "minecraft:iron_ingot"
-    },
-    "result": {
-      "item": "kevlar:feeder"
     }
+
+    },
+  "result": {
+    "item": "kevlar:feeder",
+    "count": 1
   }
 }
 

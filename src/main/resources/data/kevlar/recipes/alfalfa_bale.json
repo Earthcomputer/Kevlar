@@ -11,7 +11,8 @@
     }
   },
   "result": {
-    "item": "kevlar:alfalfa_bale"
+    "item": "kevlar:alfalfa_bale",
+    "count" : 1
   }
 }
 
