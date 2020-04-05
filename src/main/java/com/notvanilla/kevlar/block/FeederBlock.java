@@ -1,10 +1,14 @@
 package com.notvanilla.kevlar.block;
 
 import com.notvanilla.kevlar.item.KevlarItems;
+
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.block.InventoryProvider;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.BasicInventory;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,6 +21,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
@@ -66,7 +71,7 @@ public class FeederBlock extends Block implements InventoryProvider {
                 //increase level
 
                 if(world.getRandom().nextInt(INCREASE_PROBABILITY) == 0)
-                    world.setBlockState(pos, state.with(LEVEL, level + 1));
+                    world.setBlockState(pos, world.getBlockState(pos).with(LEVEL, level + 1));
 
                 return ActionResult.SUCCESS;
             }
@@ -77,9 +82,24 @@ public class FeederBlock extends Block implements InventoryProvider {
 
     }
 
+
+
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return state.get(LEVEL);
+    }
+
+    @Override
+    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        world.updateHorizontalAdjacent(pos, this);
+    }
+
     @Override
     public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) {
-        return null;
+        return new FeederInventory(state, world, pos);
     }
 
     public Item getFilledItem(BlockState state) {
@@ -94,5 +114,71 @@ public class FeederBlock extends Block implements InventoryProvider {
 
     }
 
+    public static void addToFeeder(IWorld world, BlockPos pos) {
+        int level = world.getBlockState(pos).get(LEVEL);
+        if(level < 8 &&world.getRandom().nextInt(INCREASE_PROBABILITY) == 0)
+            world.setBlockState(pos, world.getBlockState(pos).with(LEVEL, level + 1),3 );
+
+    }
+
+
+
+
+    static class FeederInventory extends BasicInventory implements SidedInventory {
+        private final BlockState state;
+        private final IWorld world;
+        private final BlockPos pos;
+        private boolean dirty;
+
+        public FeederInventory(BlockState state, IWorld world, BlockPos pos) {
+            super(1);
+            this.state = state;
+            this.world = world;
+            this.pos = pos;
+        }
+
+        public int getInvMaxStackAmount() {
+            return 1;
+        }
+
+        public int[] getInvAvailableSlots(Direction side) {
+            return side == Direction.UP ? new int[]{0} : new int[0];
+        }
+
+        public boolean canInsertInvStack(int slot, ItemStack stack, Direction dir) {
+
+            if(!this.dirty && world.getBlockState(pos).get(LEVEL) < 8 && (stack.getItem() == KevlarItems.ALFALFA || stack.getItem() == Items.WHEAT)) {
+                if(world.getBlockState(pos).get(FEED_TYPE) == FeedType.EMPTY    ) {
+                    if(stack.getItem() == KevlarItems.ALFALFA)
+                        world.setBlockState(pos, world.getBlockState(pos).with(FEED_TYPE, FeedType.ALFALFA), 3);
+
+                    if(stack.getItem() == Items.WHEAT)
+                        world.setBlockState(pos, world.getBlockState(pos).with(FEED_TYPE, FeedType.WHEAT), 3);
+
+
+                    return true;
+                } else {
+                    return world.getBlockState(pos).get(FEED_TYPE).getCrop() == stack.getItem();
+                }
+            }
+
+            return false;
+
+        }
+
+        public boolean canExtractInvStack(int slot, ItemStack stack, Direction dir) {
+            return false;
+        }
+
+        public void markDirty() {
+            ItemStack itemStack = this.getInvStack(0);
+            if (!itemStack.isEmpty()) {
+                this.dirty = true;
+                addToFeeder(world, pos);
+                this.removeInvStack(0);
+            }
+
+        }
+    }
 
 }
