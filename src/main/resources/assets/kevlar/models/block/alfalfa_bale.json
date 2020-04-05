@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "kevlar:block/alfalfa_block_top",
+    "side": "kevlar:block/alfalfa_block_side"
+  }
+}

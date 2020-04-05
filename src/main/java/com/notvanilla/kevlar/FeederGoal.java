@@ -1,6 +1,7 @@
 package com.notvanilla.kevlar;
 
 import com.notvanilla.kevlar.block.*;
+import com.notvanilla.kevlar.ducks.IAnimalEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.arguments.EntityAnchorArgumentType;
 import net.minecraft.entity.ai.goal.Goal;
@@ -9,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.poi.PointOfInterest;
 import net.minecraft.world.poi.PointOfInterestStorage;
 
@@ -24,7 +26,6 @@ public class FeederGoal extends Goal {
     private Item cropType;
     private int cooldown = 0;
     private BlockPos closestFeederPos;
-    private BlockState feeder;
     private boolean active;
     private final int COOLDOWN_TICKS = 1000;
     private double speed;
@@ -43,7 +44,7 @@ public class FeederGoal extends Goal {
 
 
 
-        if (mob.getBreedingAge() > 0 && cooldown > 0) {
+        if (mob.getBreedingAge() > 0 ||  cooldown > 0) {
             cooldown --;
             return false;
         } else {
@@ -59,7 +60,6 @@ public class FeederGoal extends Goal {
                     return false;
                 } else {
                     closestFeederPos = feederPOI.getPos();
-                    feeder = serverWorld.getBlockState(closestFeederPos);
 
                     return true;
                 }
@@ -73,7 +73,11 @@ public class FeederGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        return this.canStart();
+       if (mob.getBreedingAge() > 0 && cooldown > 0) {
+           cooldown--;
+           return false;
+       }
+       return true;
     }
 
     @Override
@@ -98,21 +102,25 @@ public class FeederGoal extends Goal {
     @Override
     public void tick() {
         if(cooldown == 0) {
+            World world = mob.world;
             BlockPos mobPos = mob.getBlockPos();
             double sqrDist = mobPos.getSquaredDistance(closestFeederPos);
-            boolean isFeederEmpty = feeder.get(FeederBlock.LEVEL) == 0;
+            boolean isFeederEmpty = world.getBlockState(closestFeederPos).get(FeederBlock.LEVEL) == 0;
             if (sqrDist < 4) {
                 mob.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, new Vec3d(closestFeederPos));
                 if (mob.getBreedingAge() == 0 && mob.canEat() && !isFeederEmpty) {
 
                     mob.lovePlayer(null);
-                    ;
-                    FeederBlock.eat(mob.getEntityWorld(), feeder, closestFeederPos);
+                    FeederBlock.eat(mob.getEntityWorld(), world.getBlockState(closestFeederPos), closestFeederPos);
                     cooldown = COOLDOWN_TICKS;
+                    if(world.getBlockState(closestFeederPos).get(FEED_TYPE) == FeedType.ALFALFA)
+                        ((IAnimalEntity) mob).kevlarSetFastBreeding(true);
+
+
                 } else if (mob.isBaby() && !isFeederEmpty) {
                     cooldown = COOLDOWN_TICKS;
                     mob.growUp((int) ((float) (-mob.getBreedingAge() / 20) * 0.1F), true);
-                    FeederBlock.eat(mob.getEntityWorld(), feeder, closestFeederPos);
+                    FeederBlock.eat(mob.getEntityWorld(), world.getBlockState(closestFeederPos), closestFeederPos);
                 }
             } else if (sqrDist < 400) {
                 mob.getNavigation().startMovingTo(closestFeederPos.getX(), closestFeederPos.getY() - 1, closestFeederPos.getZ(), speed);

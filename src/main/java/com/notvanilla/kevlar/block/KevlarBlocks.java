@@ -148,6 +148,12 @@ public class KevlarBlocks {
             KevlarItemGroup.INSTANCE
     );
 
+    public static final AlfalfaBaleBlock ALFALFA_BALE = registerBlock(
+            "alfalfa_bale",
+            new AlfalfaBaleBlock(FabricBlockSettings.copy(Blocks.HAY_BLOCK).build()),
+            KevlarItemGroup.INSTANCE
+    );
+
     public static final FeederBlock FEEDER = registerBlock(
             "feeder",
             new FeederBlock(FabricBlockSettings.of(Material.WOOD).build()),

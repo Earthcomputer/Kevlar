@@ -57,7 +57,7 @@ public class FeederBlock extends Block implements InventoryProvider {
         }
 
 
-        if (itemInHand == state.get(FEED_TYPE).getCrop()) {
+        if (itemInHand == world.getBlockState(pos).get(FEED_TYPE).getCrop()) {
             int level = state.get(LEVEL);
             if (level < 8 && !world.isClient) { //Is it okay to use the world random here like this?
                 if (!player.abilities.creativeMode)

@@ -72,6 +72,9 @@ public abstract class AnimalEntityMixin extends PassiveEntity implements IAnimal
         return isFastBreeding;
     }
 
+    @Override
+    public void kevlarSetFastBreeding(boolean fastBreeding) {this.isFastBreeding = fastBreeding;}
+
 
 
 }

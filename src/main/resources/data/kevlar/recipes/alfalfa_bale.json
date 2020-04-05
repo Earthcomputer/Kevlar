@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item" : "kevlar:alfalfa"
+    }
+  },
+  "result": {
+    "item": "kevlar:kevlar:alfalfa_bale"
+  }
+}
+
+

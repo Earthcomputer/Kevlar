@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "axis=y": { "model": "kevlar:block/alfalfa_bale" },
+    "axis=z": { "model": "kevlar:block/alfalfa_bale", "x": 90 },
+    "axis=x": { "model": "kevlar:block/alfalfa_bale", "x": 90, "y": 90 }
+  }
+}

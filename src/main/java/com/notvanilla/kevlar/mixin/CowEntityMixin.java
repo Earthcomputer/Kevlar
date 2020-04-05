@@ -22,7 +22,7 @@ public abstract class CowEntityMixin extends PassiveEntity {
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     private void addFeederGoal(CallbackInfo ci) {
-        this.goalSelector.add(8, new FeederGoal((AnimalEntity) (Object) this, 1.25));
+        this.goalSelector.add(4, new FeederGoal((AnimalEntity) (Object) this, 1.25));
     }
 
 
