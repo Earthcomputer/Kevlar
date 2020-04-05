@@ -12,7 +12,10 @@
     "FarmlandBlockMixin",
     "PointOfInterestTypeAccessor",
     "RedstoneWireBlockMixin",
+    "RuleStructureProcessorAccessor",
     "ServerWorldMixin",
+    "SinglePoolElementAccessor",
+    "StructurePoolAccessor",
     "TurtleEggBlockAccessor",
     "VillagerEntityMixin",
     "VillagerProfessionAccessor"
