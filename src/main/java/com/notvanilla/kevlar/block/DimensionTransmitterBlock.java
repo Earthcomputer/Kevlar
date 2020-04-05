@@ -70,7 +70,9 @@ public class DimensionTransmitterBlock extends Block {
 
             boolean isTriggered = state.get(TRIGGERED);
             boolean isPowered = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up());
-
+            if(isTriggered && !isPowered) {
+                world.setBlockState(pos, state.with(TRIGGERED, false));
+            }
             if(!isTriggered && isPowered) {
                 world.setBlockState(pos, state.with(TRIGGERED, true));
                 world.getBlockTickScheduler().schedule(pos, this, getTickRate(world));
