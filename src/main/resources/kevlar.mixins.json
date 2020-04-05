@@ -7,11 +7,14 @@
     "AnimalMateGoalMixin",
     "BlockSoundGroupAccessor",
     "EntityAccessor",
+    "FarmerVillagerTaskMixin",
     "FarmlandBlockMixin",
     "PointOfInterestTypeAccessor",
     "RedstoneWireBlockMixin",
     "ServerWorldMixin",
-    "TurtleEggBlockAccessor"
+    "TurtleEggBlockAccessor",
+    "VillagerEntityMixin",
+    "VillagerProfessionAccessor"
   ],
   "client": [
   ],

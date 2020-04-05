@@ -1,6 +1,6 @@
 package com.notvanilla.kevlar.mixin;
 
-import com.notvanilla.kevlar.FeedingUtil;
+import com.notvanilla.kevlar.AlfalfaUtil;
 import com.notvanilla.kevlar.ducks.IAnimalEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -49,7 +49,7 @@ public abstract class AnimalEntityMixin extends PassiveEntity implements IAnimal
     @Inject(method = "interactMob", at = @At("HEAD"), cancellable = true)
     private void checkIfFastBreeding(PlayerEntity player, Hand hand, CallbackInfoReturnable<Boolean> ci) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (FeedingUtil.animalToFastBreedingPlant.get(this.getType()) == itemStack.getItem()) {
+        if (AlfalfaUtil.animalToFastBreedingPlant.get(this.getType()) == itemStack.getItem()) {
             if (!this.world.isClient && this.getBreedingAge() == 0 && this.canEat()) {
                 isFastBreeding = true;
                 this.eat(player, itemStack);

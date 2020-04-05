@@ -29,6 +29,8 @@ public class Kevlar implements ModInitializer {
         KevlarItems.register();
         KevlarEnchantments.register();
         KevlarPointOfInterestTypes.register();
+
+        AlfalfaUtil.initialize();
     }
 
 }
