@@ -1,5 +1,5 @@
 {
-  "name": "Interdimensional <br> Redstone",
+  "name": "Interdimensional Redstone",
   "icon": "kevlar:end_transmitter",
   "category": "redstone",
   "pages": [
@@ -11,6 +11,16 @@
       "type": "crafting",
       "recipe": "kevlar:nether_receiver",
       "recipe2": "kevlar:nether_transmitter"
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:end_receiver",
+      "recipe2": "kevlar:end_transmitter"
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:overworld_receiver",
+      "recipe2": "kevlar:overworld_transmitter"
     }
   ]
 }

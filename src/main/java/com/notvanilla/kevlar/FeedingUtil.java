@@ -18,7 +18,8 @@ public class FeedingUtil {
             EntityType.COW, KevlarItems.ALFALFA,
             EntityType.RABBIT, KevlarItems.ALFALFA,
             EntityType.PIG, KevlarItems.ALFALFA,
-            EntityType.MOOSHROOM, KevlarItems.ALFALFA
+            EntityType.MOOSHROOM, KevlarItems.ALFALFA,
+            EntityType.SHEEP, KevlarItems.ALFALFA
     );
 
     public static void initialize() {

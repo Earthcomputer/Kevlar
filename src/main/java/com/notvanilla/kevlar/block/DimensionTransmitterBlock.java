@@ -30,7 +30,6 @@ public class DimensionTransmitterBlock extends Block {
 
     public static final BooleanProperty TRIGGERED = Properties.TRIGGERED;//used to see whether the neighbor update has either powered or unpowered block
     public final DimensionType dimension;
-    private boolean isTriggering = false;
 
     public DimensionTransmitterBlock(Settings settings, DimensionType dimension) {
         super(settings.nonOpaque());
@@ -60,7 +59,7 @@ public class DimensionTransmitterBlock extends Block {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         DimensionType currentDimension = world.getDimension().getType();
-        if(isTriggering) {
+        if(state.get(TRIGGERED) == true){
             sendPulseToDimension(pos, world.getServer().getWorld(dimension), currentDimension);
             world.setBlockState(pos, state.with(TRIGGERED, false));
         }
@@ -74,7 +73,6 @@ public class DimensionTransmitterBlock extends Block {
 
             if(!isTriggered && isPowered) {
                 world.setBlockState(pos, state.with(TRIGGERED, true));
-                isTriggering = true;
                 world.getBlockTickScheduler().schedule(pos, this, getTickRate(world));
 
 

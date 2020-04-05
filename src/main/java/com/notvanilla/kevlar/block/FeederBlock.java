@@ -29,7 +29,7 @@ public class FeederBlock extends Block implements InventoryProvider {
     private static final int INCREASE_PROBABILITY = 8; //1/8 is chance of increase
 
     public FeederBlock(Settings settings) {
-        super(settings);
+        super(settings.nonOpaque());
         setDefaultState(
                 getStateManager().getDefaultState().with(LEVEL, 0).with(FEED_TYPE, FeedType.EMPTY)
         );
