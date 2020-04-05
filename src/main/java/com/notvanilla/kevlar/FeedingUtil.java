@@ -13,7 +13,7 @@ import net.minecraft.village.VillagerProfession;
 
 import java.util.Map;
 
-public class AlfalfaUtil {
+public class FeedingUtil {
     public static  Map<EntityType<? extends AnimalEntity>, Item> animalToFastBreedingPlant = ImmutableMap.of(
             EntityType.COW, KevlarItems.ALFALFA,
             EntityType.RABBIT, KevlarItems.ALFALFA,

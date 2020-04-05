@@ -148,6 +148,12 @@ public class KevlarBlocks {
             KevlarItemGroup.INSTANCE
     );
 
+    public static final FeederBlock FEEDER = registerBlock(
+            "feeder",
+            new FeederBlock(FabricBlockSettings.of(Material.WOOD).build()),
+            KevlarItemGroup.INSTANCE
+    );
+
     private static <T extends Block> T registerBlock(String name, T block, ItemGroup itemGroup) {
 
         Registry.register(Registry.BLOCK, new Identifier(Kevlar.MOD_ID, name), block);

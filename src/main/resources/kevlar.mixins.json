@@ -6,6 +6,7 @@
     "AnimalEntityMixin",
     "AnimalMateGoalMixin",
     "BlockSoundGroupAccessor",
+    "CowEntityMixin",
     "EntityAccessor",
     "FarmerVillagerTaskMixin",
     "FarmlandBlockMixin",

@@ -1,0 +1,56 @@
+{
+  "multipart": [
+        {   "apply": { "model": "kevlar:block/empty_feeder" }},
+          {   "when": { "level": "1" , "feed_type" : "alfalfa"},
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level1" }
+          },
+          {   "when": { "level": "2" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level2" }
+          },
+          {   "when": { "level": "3" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level3" }
+          },
+          {   "when": { "level": "4" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level4" }
+          },
+          {   "when": { "level": "5" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level5" }
+          },
+          {   "when": { "level": "6" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level6" }
+          },
+          {   "when": { "level": "7" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level7" }
+          },
+          {   "when": { "level": "8" , "feed_type" : "alfalfa" },
+            "apply": { "model": "kevlar:block/alfalfa_feeder_level8" }
+          },
+
+
+          {   "when": { "level": "1" , "feed_type" : "wheat"},
+            "apply": { "model": "kevlar:block/wheat_feeder_level1" }
+          },
+          {   "when": { "level": "2" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level2" }
+          },
+          {   "when": { "level": "3" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level3" }
+          },
+          {   "when": { "level": "4" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level4" }
+          },
+          {   "when": { "level": "5" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level5" }
+          },
+          {   "when": { "level": "6" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level6" }
+          },
+          {   "when": { "level": "7" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level7" }
+          },
+          {   "when": { "level": "8" , "feed_type" : "wheat" },
+            "apply": { "model": "kevlar:block/wheat_feeder_level8" }
+          }
+
+      ]
+  }

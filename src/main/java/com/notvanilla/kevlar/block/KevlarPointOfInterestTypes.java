@@ -18,6 +18,11 @@ public class KevlarPointOfInterestTypes {
             );
 
 
+    public static final PointOfInterestType FEEDER = register(
+            "feeder",
+            getAllStates(KevlarBlocks.FEEDER)
+        );
+
 
 
     private static PointOfInterestType register(String id, Set<BlockState>blockStates ) {
