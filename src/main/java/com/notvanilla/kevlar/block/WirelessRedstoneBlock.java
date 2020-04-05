@@ -43,18 +43,7 @@ public class WirelessRedstoneBlock extends WirelessBlock<RedstoneNode> {
         RedstoneNode node = network.getNode(pos);
         if (node != null) {
             if (receiveSignal(network, node, world, pos, state)) {
-                boolean powered = false;
-                for (BlockPos powerSource : node.getPowerSources()) {
-                    if (node.getPowerSourceRef(powerSource).getPower() > 0) {
-                        powered = true;
-                        break;
-                    }
-                }
-                if (powered != state.get(POWERED)) {
-                    world.setBlockState(pos, state.with(POWERED, powered));
-                }
-
-                onPowerChanged(world, pos);
+                refreshPower(node, world, pos, state);
 
                 propagateSignal(network, world, pos, state.get(COLOR));
             }
@@ -105,6 +94,21 @@ public class WirelessRedstoneBlock extends WirelessBlock<RedstoneNode> {
                 .forEach(node -> loadAndSchedule(world, node.getPos()));
     }
 
+    private void refreshPower(RedstoneNode node, ServerWorld world, BlockPos pos, BlockState state) {
+        boolean powered = false;
+        for (BlockPos powerSource : node.getPowerSources()) {
+            if (node.getPowerSourceRef(powerSource).getPower() > 0) {
+                powered = true;
+                break;
+            }
+        }
+        if (powered != state.get(POWERED)) {
+            world.setBlockState(pos, state.with(POWERED, powered));
+        }
+
+        onPowerChanged(world, pos);
+    }
+
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean moved) {
         if (shouldUpdate(oldState, state)) {
@@ -113,6 +117,10 @@ public class WirelessRedstoneBlock extends WirelessBlock<RedstoneNode> {
                 ServerWorld serverWorld = (ServerWorld) world;
                 RedstoneNetwork network = getNetwork(serverWorld);
                 network.recalculateDistances(); // TODO do something smarter than recalculate everything
+                RedstoneNode node = network.getNode(pos);
+                if (node != null) {
+                    refreshPower(node, serverWorld, pos, state);
+                }
                 loadAndSchedule(serverWorld, pos);
             }
         }
