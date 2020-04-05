@@ -31,6 +31,7 @@ public class Kevlar implements ModInitializer {
         KevlarPointOfInterestTypes.register();
 
         AlfalfaUtil.initialize();
+        KevlarLootEnhancements.initialize();
     }
 
 }
