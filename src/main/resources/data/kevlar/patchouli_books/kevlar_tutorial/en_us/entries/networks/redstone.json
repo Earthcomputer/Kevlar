@@ -1,0 +1,24 @@
+{
+  "name": "Redstone Network",
+  "icon": "kevlar:wireless_redstone_transmitter",
+  "category": "networks",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Use this to transmit redstone signals wirelessly from Redstone Transmitters to all Redstone Receivers connected to it on the same colored network. Use Redstone Boosters to extend the reach of the signal."
+    },
+    {
+      "type": "text",
+      "text": "Power the Redstone Transmitter to start powering the network. The transmitter will power all nearby neighboring components of the same color, and they will in turn power their nearby neighbors, and so on until the whole network within reach is powered. Use a Redstone Receiver to convert the signal back into redstone power."
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:wireless_redstone_transmitter",
+      "recipe2": "kevlar:wireless_redstone_repeater"
+    },
+    {
+      "type": "crafting",
+      "recipe": "kevlar:wireless_redstone_receiver"
+    }
+  ]
+}
