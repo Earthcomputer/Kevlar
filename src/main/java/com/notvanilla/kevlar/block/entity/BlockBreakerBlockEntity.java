@@ -68,7 +68,7 @@ public class BlockBreakerBlockEntity extends LootableContainerBlockEntity implem
 
     @Override
     public int getInvSize() {
-        return 1;
+        return items.size();
     }
 
     @Override

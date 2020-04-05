@@ -5,7 +5,9 @@
   "mixins": [
     "AnimalEntityMixin",
     "AnimalMateGoalMixin",
+    "BlockPileFeatureConfigAccessor",
     "BlockSoundGroupAccessor",
+    "BlockStateProviderTypeAccessor",
     "CowEntityMixin",
     "EntityAccessor",
     "FarmerVillagerTaskMixin",
