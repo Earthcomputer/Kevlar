@@ -123,19 +123,28 @@ public class KevlarBlocks {
 
     public static final WirelessRedstoneBlock WIRELESS_REDSTONE_REPEATER = registerBlock(
             "wireless_redstone_repeater",
-            new WirelessRedstoneBlock(NodeType.REPEATER, FabricBlockSettings.of(Material.METAL).nonOpaque().build()),
+            new WirelessRedstoneBlock(NodeType.REPEATER, FabricBlockSettings.of(Material.METAL)
+                    .strength(1.5f, 6f)
+                    .nonOpaque()
+                    .build()),
             KevlarItemGroup.INSTANCE
     );
 
     public static final WirelessRedstoneTransmitterBlock WIRELESS_REDSTONE_TRANSMITTER = registerBlock(
             "wireless_redstone_transmitter",
-            new WirelessRedstoneTransmitterBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().build()),
+            new WirelessRedstoneTransmitterBlock(FabricBlockSettings.of(Material.METAL)
+                    .strength(1.5f, 6f)
+                    .nonOpaque()
+                    .build()),
             KevlarItemGroup.INSTANCE
     );
 
     public static final WirelessRedstoneReceiverBlock WIRELESS_REDSTONE_RECEIVER = registerBlock(
             "wireless_redstone_receiver",
-            new WirelessRedstoneReceiverBlock(FabricBlockSettings.of(Material.METAL).nonOpaque().build()),
+            new WirelessRedstoneReceiverBlock(FabricBlockSettings.of(Material.METAL)
+                    .strength(1.5f, 6f)
+                    .nonOpaque()
+                    .build()),
             KevlarItemGroup.INSTANCE
     );
 
