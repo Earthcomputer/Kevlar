@@ -3,7 +3,7 @@
 	"textures": {
 		"0": "block/iron_block",
 		"1": "block/oak_planks",
-		"particle": "block/oak_planks"
+		"particle": "block/iron_block"
 	},
 	"elements": [
 		{
@@ -79,15 +79,15 @@
 			}
 		},
 		{
-			"from": [0, 14, 14],
-			"to": [16, 16, 16],
+			"from": [2, 14, 14],
+			"to": [14, 16, 16],
 			"faces": {
 				"north": {"uv": [0, 0, 16, 2], "texture": "#0"},
 				"east": {"uv": [0, 0, 2, 2], "texture": "#0"},
 				"south": {"uv": [0, 0, 16, 2], "texture": "#0"},
 				"west": {"uv": [0, 0, 2, 2], "texture": "#0"},
-				"up": {"uv": [0, 0, 2, 16], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [0, 0, 2, 16], "rotation": 90, "texture": "#0"}
+				"up": {"uv": [0, 2, 2, 14], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [0, 0, 2, 12], "rotation": 90, "texture": "#0"}
 			}
 		},
 		{
@@ -103,10 +103,10 @@
 			}
 		},
 		{
-			"from": [0, 14, 0],
-			"to": [16, 16, 2],
+			"from": [2, 14, 0],
+			"to": [14, 16, 2],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"north": {"uv": [0, 0, 12, 2], "texture": "#0"},
 				"east": {"uv": [0, 0, 2, 2], "texture": "#0"},
 				"south": {"uv": [0, 0, 16, 2], "texture": "#0"},
 				"west": {"uv": [0, 0, 2, 2], "texture": "#0"},
