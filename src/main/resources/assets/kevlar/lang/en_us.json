@@ -27,6 +27,9 @@
 
   "itemGroup.kevlar.kevlar": "Kevlar",
 
+  "item.kevlar.alfalfa" : "Alfalfa",
+  "item.kevlar.alfalfa_seeds" : "Alfalfa Seeds",
+
   "kevlar.tutorial.name": "Kevlar Tutorial",
   "kevlar.tutorial.landing_text": "Welcome to Kevlar, your early-to-mid-game tech mod of choice!"
 }

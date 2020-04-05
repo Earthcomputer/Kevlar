@@ -10,7 +10,7 @@
       "item": "minecraft:cobblestone"
     },
     "P": {
-      "tag": "minecraft:golden_hoe"
+      "item": "minecraft:golden_hoe"
     },
     "R": {
       "item": "minecraft:redstone"
