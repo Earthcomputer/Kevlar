@@ -31,7 +31,7 @@ public class Kevlar implements ModInitializer {
         KevlarPointOfInterestTypes.register();
 
         FeedingUtil.initialize();
-        KevlarLootEnhancements.initialize();
+        KevlarWorldgenEnhancements.initialize();
     }
 
 }
