@@ -1,0 +1,16 @@
+{
+  "name": "Alfalfa Bale",
+  "icon": "kevlar:alfalfa_bale",
+  "category": "farming",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "kevlar:alfalfa_bale",
+      "text": "This block is the equivalent of Hay Bales but for Alfalfa. It can be found in planes and savanna villages and crafted back into 9 alfalfa."
+    },
+    {
+      "type" :"crafting",
+      "recipe" : "kevlar:alfalfa"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Feeder",
+  "icon": "kevlar:feeder",
+  "category": "farming",
+  "pages": [
+    {
+      "type": "spotlight",
+      "item": "kevlar:feeder",
+      "text": "A feeder allows animals to breed independently of a player and can be filled with wheat or alfalfa."
+    },
+    {
+      "type" : "crafting",
+      "recipe" : "kevlar:feeder"
+    }
+  ]
+}
