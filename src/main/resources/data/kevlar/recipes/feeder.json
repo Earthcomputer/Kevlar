@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "I_I",
-    "I_I",
+    "I I",
+    "I I",
     "WWW"
   ],
   "key" : {
@@ -11,10 +11,12 @@
     },
     "I": {
       "item": "minecraft:iron_ingot"
-    },
-    "result": {
-      "item": "kevlar:feeder"
     }
+
+    },
+  "result": {
+    "item": "kevlar:feeder",
+    "count": 1
   }
 }
 
